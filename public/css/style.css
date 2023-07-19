@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 input.add-task {
     outline: none;
     border: none;
@@ -15,16 +22,35 @@ label {
     margin-top: 30px;
 }
 
-.submit-btn {
+/* submit button */
+.submit-btn.btn.btn-outline-warning {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #0d6efd;
-    border: none;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.btn-outline-warning {
+    --bs-btn-hover-color: white !important;
+    --bs-btn-active-color: white !important;
+}
+
+.navbar,
+.navbar-brand,
+.btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem !important;
+}
+
+.nav-item {
+    margin: .5rem;
 }
 
 .nav-link.dropdown-toggle {
@@ -34,6 +60,19 @@ label {
 .dropdown-menu.show {
     width: fit-content;
 }
+
+/* input checkbox */
+.form-check-input[type=checkbox] {
+    border-radius: 50% !important;
+    border-color: #ffc107;
+    /* background-color: #ffc107; */
+}
+
+input:checked {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
 
 /* bootstrap style */
 .list-group {
