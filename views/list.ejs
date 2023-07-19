@@ -1,0 +1,34 @@
+<%- include('header'); -%>
+
+    <div class="container-fluid main-heading">
+        <h1>Today</h1>
+    </div>
+    <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+        <div class="list-group">
+            <label class="list-group-item d-flex gap-3">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
+                <span class="pt-1 form-checked-content">
+                    Finish sales report
+                </span>
+            </label>
+            <label class="list-group-item d-flex gap-3">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
+                <span class="pt-1 form-checked-content">
+                    Weekly All Hands
+                </span>
+            </label>
+            <label class="list-group-item d-flex gap-3">
+                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
+                <span class="pt-1 form-checked-content">
+                    Out of office
+                </span>
+            </label>
+            <label class="list-group-item d-flex gap-3 bg-body-tertiary"
+                style="display: flex !important;justify-content: space-around;">
+                <input type="text" placeholder="Add New Task" class="add-task">
+                <button type="submit" class="submit-btn">+</button>
+            </label>
+        </div>
+    </div>
+
+    <%- include('footer'); -%>
