@@ -1,3 +1,41 @@
+input.add-task {
+    outline: none;
+    border: none;
+    background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
+    color: grey;
+}
+
+label {
+    font-size: 1.5rem;
+}
+
+.main-heading {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link.dropdown-toggle {
+    color: white;
+}
+
+.dropdown-menu.show {
+    width: fit-content;
+}
+
+/* bootstrap style */
 .list-group {
     width: 100%;
     max-width: 460px;
