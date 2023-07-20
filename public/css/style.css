@@ -13,8 +13,8 @@ body {
 
 /* adding new item input */
 input.add-task {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.25rem;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-size: 1.5rem;
     font-weight: 500;
     outline: none;
     border: none;
