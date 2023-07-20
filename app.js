@@ -16,6 +16,11 @@ app.get("/", (req, res) => {
     res.render("list", { listTitle: day });
 })
 
+
+app.all("*", (req, res) => {
+    res.status(404).render("error");
+})
+
 app.listen(3000, function () {
     console.log("Server started on port 3000");
 });
