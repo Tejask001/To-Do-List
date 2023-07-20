@@ -3,6 +3,12 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: #F8F9FA !important;
+}
+
+/* label around add task */
+.list-group-item+.list-group-item {
+    background-color: white !important;
 }
 
 /* adding new item input */
@@ -12,8 +18,9 @@ input.add-task {
     font-weight: 500;
     outline: none;
     border: none;
-    background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
+    background-color: white !important;
     color: grey;
+    opacity: 0.75;
     width: 313px;
     text-align: center;
 }
@@ -69,6 +76,10 @@ label {
     margin: .5rem;
 }
 
+.nav-link {
+    font-size: 20px !important;
+}
+
 .nav-link.dropdown-toggle {
     color: white;
 }
@@ -80,6 +91,10 @@ label {
 #navbarsExample01 {
     margin-bottom: 20px;
     margin-left: 20px;
+}
+
+#navbarsExample01>button {
+    font-size: 20px;
 }
 
 /* input checkbox */
