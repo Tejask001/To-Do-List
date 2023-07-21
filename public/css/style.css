@@ -109,6 +109,19 @@ input:checked {
     border-color: #ffc107 !important;
 }
 
+.today-btn {
+    text-decoration: none;
+    color: inherit;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tut-today-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
 
 
 /* bootstrap style */

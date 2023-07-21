@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("list", { listTitle: "Tutorial" });
+    res.render("tutorial");
 })
 
 app.get("/today", (req, res) => {
