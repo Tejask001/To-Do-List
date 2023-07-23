@@ -66,6 +66,17 @@ app.post("/tutorial", (req, res) => {
     }, 250);
 })
 
+app.post("/delete", (req, res) => {
+    const deleteTaskId = req.body.deleteTaskId;
+
+    Task.findByIdAndDelete(deleteTaskId).then(() => {
+        console.log("Item successfully deleted");
+    }).catch((err) => {
+        console.log(err);
+    });
+
+    res.redirect("/");
+})
 
 app.all("*", (req, res) => {
     res.status(404).render("error");
