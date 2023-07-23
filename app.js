@@ -31,7 +31,18 @@ const tutorialItems = [tut1, tut2];
 
 
 app.get("/", (req, res) => {
-    res.render("tutorial");
+    Task.find().then((tasks) => {
+        if (tasks.length === 0) {
+            //collection empty i.e. no tasks so add tutorial tasks
+            Task.insertMany(tutorialItems);
+            res.redirect("/");
+        } else {
+            //collection has tasks so show them, render the page
+            res.render("tutorial", { tasks: tasks });
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
 })
 
 app.get("/today", (req, res) => {
