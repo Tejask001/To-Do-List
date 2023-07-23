@@ -16,28 +16,19 @@
                 </label>
                 <% }) %>
 
-                    <!-- <label class="list-group-item d-flex gap-3">
-                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-                <span class="pt-1 form-checked-content">
-                    Click the checkbox to delete a task
-                </span>
-            </label>
-            <label class="list-group-item d-flex gap-3">
-                <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-                <span class="pt-1 form-checked-content">
-                    Try it Out here
-                </span>
-            </label> -->
-                    <label class="list-group-item d-flex gap-3 bg-body-tertiary"
-                        style="display: flex !important;justify-content: space-around;">
-                        <input type="text" placeholder="Add New Task" class="add-task">
-                        <button type="submit" class="submit-btn btn btn-outline-warning">+</button>
-                    </label>
+                    <form action="/tutorial" method="POST">
+                        <label class="list-group-item d-flex gap-3 bg-body-tertiary"
+                            style="display: flex !important;justify-content: space-around; background-color: white !important; border-top: none;">
+                            <input type="text" placeholder="Add New Task" class="add-task" name="newTask">
+                            <button type="submit" class="submit-btn btn btn-outline-warning">+</button>
+                        </label>
+                    </form>
+
         </div>
     </div>
     <div class="container tut-today-btn">
-        <a href="/today" class="today-btn"><button class="btn btn-outline-warning"
-                style="font-size: 20px; width: 300px;">Today's
+        <a href="/today" class="today-btn"><button class="btn btn-warning"
+                style="font-size: 24px;width: 250px;font-weight: 500;">Today's
                 page</button></a>
     </div>
 

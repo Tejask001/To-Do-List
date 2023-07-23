@@ -53,6 +53,20 @@ app.get("/today", (req, res) => {
 })
 
 
+app.post("/tutorial", (req, res) => {
+    const newTask = req.body.newTask;
+
+    let addTask = new Task({
+        name: newTask
+    });
+
+    addTask.save();
+    setTimeout(() => {
+        res.redirect("/");
+    }, 250);
+})
+
+
 app.all("*", (req, res) => {
     res.status(404).render("error");
 })
