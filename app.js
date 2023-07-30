@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
-const date = require(__dirname + "/date.js");
 
 const app = express();
 
@@ -14,7 +13,7 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://" + process.env.ADMIN + ":" + process.env.PASSW + "@cluster0.wjkouan.mongodb.net/todoDB");
 
-////////////// TUTORIAL LIST DB/////////////
+////////////// TUTORIAL LIST COLLECTION /////////////
 
 const taskSchema = new mongoose.Schema({
     name: String
@@ -31,6 +30,36 @@ const tut2 = new Task({
 });
 
 const tutorialItems = [tut1, tut2];
+
+////////////////// LISTS COLLECTION /////////////////////
+const listSchema = new mongoose.Schema({
+    name: String,
+    task: [taskSchema]
+});
+
+const List = mongoose.model("list", listSchema);
+
+
+// const home = new List({
+//     name: "Home",
+//     task: tutorialItems
+// });
+
+// home.save();
+
+// const work = new List({
+//     name: "Work",
+//     task: tutorialItems
+// });
+
+// work.save();
+
+// const today = new List({
+//     name: "Today",
+//     task: tutorialItems
+// });
+
+// today.save();
 
 ///////////////// MAIN ROUTE / TUTORIAL PAGE ////////////////
 app.get("/", (req, res) => {
@@ -67,18 +96,17 @@ app.post("/tutorial", (req, res) => {
 app.route("/:listName")
     .get((req, res) => {
         let listName = req.params.listName;
-        if (listName === "Today") {
-            let day = date.getDate();
-            setTimeout(() => {
-                res.render("list", { listTitle: day });
-            }, 200);
-        } else {
-            setTimeout(() => {
-                res.render("list", { listTitle: listName });
-            }, 200);
-        }
-    })
 
+        List.findOne({ name: listName }).then((result) => {
+            setTimeout(() => {
+                res.render("list", { listTitle: listName, tasks: result });
+            }, 200);
+            // console.log("List exists in collection");
+            // console.log(result);
+        })
+
+
+    })
 
 
 app.post("/delete", (req, res) => {
