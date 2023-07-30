@@ -14,6 +14,8 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://" + process.env.ADMIN + ":" + process.env.PASSW + "@cluster0.wjkouan.mongodb.net/todoDB");
 
+////////////// TUTORIAL LIST DB/////////////
+
 const taskSchema = new mongoose.Schema({
     name: String
 });
@@ -30,7 +32,7 @@ const tut2 = new Task({
 
 const tutorialItems = [tut1, tut2];
 
-
+///////////////// MAIN ROUTE / TUTORIAL PAGE ////////////////
 app.get("/", (req, res) => {
     Task.find().then((tasks) => {
         if (tasks.length === 0) {
@@ -44,15 +46,7 @@ app.get("/", (req, res) => {
     }).catch((err) => {
         console.log(err);
     })
-})
-
-app.get("/today", (req, res) => {
-    let day = date.getDate();
-    setTimeout(() => {
-        res.render("list", { listTitle: day });
-    }, 200);
-})
-
+});
 
 app.post("/tutorial", (req, res) => {
     const newTask = req.body.newTask;
@@ -65,7 +59,27 @@ app.post("/tutorial", (req, res) => {
     setTimeout(() => {
         res.redirect("/");
     }, 250);
-})
+});
+
+
+////////////////// CUSTOM LISTS ////////////////
+
+app.route("/:listName")
+    .get((req, res) => {
+        let listName = req.params.listName;
+        if (listName === "Today") {
+            let day = date.getDate();
+            setTimeout(() => {
+                res.render("list", { listTitle: day });
+            }, 200);
+        } else {
+            setTimeout(() => {
+                res.render("list", { listTitle: listName });
+            }, 200);
+        }
+    })
+
+
 
 app.post("/delete", (req, res) => {
     const deleteTaskId = req.body.deleteTaskId;
