@@ -98,19 +98,26 @@ app.route("/:listName")
         let listName = req.params.listName;
 
         List.findOne({ name: listName }).then((result) => {
-            setTimeout(() => {
-                res.render("list", { listTitle: listName, tasks: result });
-            }, 200);
-            // console.log("List exists in collection");
-            // console.log(result);
+            if (result) {
+                res.render("list", { listTitle: listName, tasks: result.task });
+            } else {
+                console.log("No document found for listName: " + listName);
+            }
+        }).catch((err) => {
+            console.log(err);
         })
-
 
     })
 
 
 app.post("/delete", (req, res) => {
+    // const listTitle = req.params.listTitle;
     const deleteTaskId = req.body.deleteTaskId;
+
+    // List.findOneAndUpdate({ name: listTitle }, { $pull: { tasks: { _id: deleteTaskId } } }).then(() => {
+    //     console.log("Checked Item Successfully Removed")
+    // }).catch((err) => { console.log(err) });
+    // res.redirect("/" + listTitle);
 
     Task.findByIdAndDelete(deleteTaskId).then(() => {
         console.log("Item successfully deleted");

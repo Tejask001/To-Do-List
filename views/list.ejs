@@ -7,8 +7,8 @@
     </div>
     <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
         <div class="list-group">
-            <% tasks.task.forEach((task)=>{ %>
-                <form action="/delete" method="POST">
+            <% tasks.forEach((task)=>{ %>
+                <form action="/delete/<%= listTitle%>" method="POST">
                     <label class="list-group-item d-flex gap-3">
                         <input class="form-check-input flex-shrink-0" type="checkbox" name="deleteTaskId"
                             value="<%= task._id%>" style="font-size: 1.375em;" onchange="this.form.submit()">
@@ -16,6 +16,7 @@
                             <%= task.name %>
                         </span>
                     </label>
+                    <input type="hidden" name="listTitle" value="<%= listTitle%>">
                 </form>
                 <% }) %>
                     <label class="list-group-item d-flex gap-3 bg-body-tertiary"
