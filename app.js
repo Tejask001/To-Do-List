@@ -39,28 +39,6 @@ const listSchema = new mongoose.Schema({
 
 const List = mongoose.model("list", listSchema);
 
-
-// const home = new List({
-//     name: "Home",
-//     task: tutorialItems
-// });
-
-// home.save();
-
-// const work = new List({
-//     name: "Work",
-//     task: tutorialItems
-// });
-
-// work.save();
-
-// const today = new List({
-//     name: "Today",
-//     task: tutorialItems
-// });
-
-// today.save();
-
 ///////////////// MAIN ROUTE / TUTORIAL PAGE ////////////////
 app.get("/", (req, res) => {
     Task.find().then((tasks) => {
@@ -94,10 +72,10 @@ app.post("/tutorial", (req, res) => {
 ////////////////// CUSTOM LISTS ////////////////
 
 app.route("/:listName")
-    .get((req, res) => {
+    .get(async (req, res) => {
         let listName = req.params.listName;
 
-        List.findOne({ name: listName }).then((result) => {
+        await List.findOne({ name: listName }).then((result) => {
             if (result) {
                 res.render("list", { listTitle: listName, tasks: result.task });
             } else {
@@ -106,8 +84,28 @@ app.route("/:listName")
         }).catch((err) => {
             console.log(err);
         })
-
     })
+    .post((req, res) => {
+        let listName = req.params.listName;
+        const newTask = req.body.newTask;
+
+        let addTask = new Task({
+            name: newTask
+        });
+
+        List.findOne({ name: listName }).then((result) => {
+            if (result) {
+                result.task.push(addTask);
+                result.save();
+            } else {
+                console.log("List not found " + listName);
+            }
+        })
+        setTimeout(() => {
+            res.redirect("/" + listName);
+        }, 250);
+    })
+
 
 
 app.post("/delete", (req, res) => {
