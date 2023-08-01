@@ -109,13 +109,7 @@ app.route("/:listName")
 
 
 app.post("/delete", (req, res) => {
-    // const listTitle = req.params.listTitle;
     const deleteTaskId = req.body.deleteTaskId;
-
-    // List.findOneAndUpdate({ name: listTitle }, { $pull: { tasks: { _id: deleteTaskId } } }).then(() => {
-    //     console.log("Checked Item Successfully Removed")
-    // }).catch((err) => { console.log(err) });
-    // res.redirect("/" + listTitle);
 
     Task.findByIdAndDelete(deleteTaskId).then(() => {
         console.log("Item successfully deleted");
@@ -124,6 +118,18 @@ app.post("/delete", (req, res) => {
     });
 
     res.redirect("/");
+})
+
+app.post("/delete/:listTitle", (req, res) => {
+    const listTitle = req.params.listTitle;
+    const deleteTaskId = req.body.deleteTaskId;
+
+    List.findOneAndUpdate({ name: listTitle }, { $pull: { task: { _id: deleteTaskId } } }).then(() => {
+        console.log("Checked Item Successfully Removed")
+    }).catch((err) => { console.log(err) });
+    setTimeout(() => {
+        res.redirect("/" + listTitle);
+    }, 250);
 })
 
 app.all("*", (req, res) => {
